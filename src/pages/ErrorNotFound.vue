@@ -1,14 +1,13 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <div class="fullscreen text-red text-center text-bold q-pa-md flex flex-center" style="background-image: url('/icons/la-seduce.jpg');">
     <div>
-      <div style="font-size: 30vh">404</div>
 
-      <div class="text-h2" style="opacity: 0.4">Oops. Nothing here...</div>
+      <div class="text-h2" style="opacity: 0.4">well... how'd you get here?</div>
 
       <q-btn
         class="q-mt-xl"
-        color="white"
-        text-color="blue"
+        color="red"
+        text-color="white"
         unelevated
         to="/"
         label="Go Home"
