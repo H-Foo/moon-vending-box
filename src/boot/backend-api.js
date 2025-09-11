@@ -11,7 +11,8 @@ export async function GetPin(paymentId)
     if (!response.ok){
         throw new Error("Sorry! Something went wrong >_<")
     }
-    return response.json();
+    console.log(response);
+    return response.text();
 }
 
 

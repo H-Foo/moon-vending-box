@@ -121,7 +121,7 @@ async function submit(){
 
   try {
       const response = await GetPin(paymentId)
-      apiResponse.value = response.message
+      apiResponse.value = response
 
   } catch (error){
     apiResponse.value = error.message || 'What just happened?';
