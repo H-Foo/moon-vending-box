@@ -68,7 +68,9 @@
       v-model="userInput"
       placeholder="Enter your payment Id here"
       mask="NNNNNNNN-#######"
-      class="col secondary-bg">
+      class="col secondary-bg"
+      :error="!!inputError"
+      :error-message="inputError">
       <template v-slot:append>
         <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id">
         <q-icon name="arrow_right"/>
@@ -104,6 +106,7 @@ const boxLocation = ref('')
 const userInput = ref('')
 const apiResponse = ref('')
 const loading = ref('false')
+const inputError = ref('')
 
 const route = useRoute()
 
@@ -121,9 +124,15 @@ async function submit(){
   const paymentId = `${boxLocation.value} ${userInput.value}`;
   console.log(`submitted ${paymentId}.`);
 
+  if (userInput.value == '6OD9lfrx-1541731')
+  {
+    inputError.value = 'This Payment ID already exist.' 
+    return
+  }
+
   try {
-      const response = await GetPin(paymentId)
-      apiResponse.value = response
+    const response = await GetPin(paymentId)
+    apiResponse.value = response
 
   } catch (error){
     apiResponse.value = error.message || 'What just happened?';
