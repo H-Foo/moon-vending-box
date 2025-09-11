@@ -31,7 +31,7 @@
 
       <!-- Step 4 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-borders">
-        <div> Submit your payment ID <strong>here</strong> and get the passcode. 🙏 Please 🙏 lock the box after use -- Your honesty keeps us going.</div>
+        <div> Submit your payment ID below here and get the passcode. 🙏 <strong>Please</strong> 🙏 <strong>lock the box after use</strong> -- Your honesty keeps us going.</div>
       </q-card>
 
       <div class="flex flex-center q-mb-sm">
@@ -68,12 +68,14 @@
       v-model="userInput"
       placeholder="Enter your payment Id here"
       mask="NNNNNNNN-#######"
-      class="col secondary-bg"
+      class="col secondary-bg q-pa-md "
       :error="!!inputError"
-      :error-message="inputError">
+      :error-message="inputError"
+      @keyup.enter="submit">
       <template v-slot:append>
-        <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id">
-        <q-icon name="arrow_right"/>
+        <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id" :loading="loading">
+          <template v-slot:loading><q-spinner-dots color="primary" /></template>
+          <q-icon name="arrow_right"/>
         </q-btn>
       </template>
     </q-input>
