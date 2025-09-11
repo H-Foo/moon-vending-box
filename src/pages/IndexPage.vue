@@ -67,7 +67,7 @@
       filled
       v-model="userInput"
       placeholder="Enter your payment Id here"
-      mask="NNNNNNNN-######"
+      mask="NNNNNNNN-#######"
       class="col secondary-bg">
       <template v-slot:append>
         <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id">
