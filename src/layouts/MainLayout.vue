@@ -7,41 +7,42 @@
     </q-header>
 
     <q-footer>
-      <q-list class="row">
-        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
-      </q-list>
       <div class="q-mt-md text-caption text-center">Offered with 🤍 by Moon.</div>
     </q-footer>
     <q-page-container>
       <router-view />
-      <q-page-sticky position="top-left" :offset="[5,10]">
-        <q-btn href="https://api.whatsapp.com/send?phone=60182973819" 
-          rounded
-          unelevated
-          size="md"
+      <q-page-sticky position="bottom-left" :offset="[5,10]">
+        <q-fab
+          icon="info"
+          direction="right"
           color="primary"
-          class="shadow-2">
-          <img src="/icons/WhatsApp.svg" style="width: 15px; height: 15px;" />
-        </q-btn>
+          text-color="white"
+          glossy
+        ><q-fab-action
+            external
+            icon="img:/icons/WhatsApp.svg"
+            href="https://api.whatsapp.com/send?phone=60182973819"         
+            color="secondary"
+        />
+        <q-fab-action
+          external
+          icon="public"
+          href="https://moonbyhosh.wixsite.com/moon"
+          color="primary"
+        />
+        <q-fab-action
+          external
+          icon="img:/icons/ig-logo.svg"
+          href="https://www.instagram.com/moonbyhosh/"
+          color="secondary"
+        />
+        </q-fab>
       </q-page-sticky>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
-import EssentialLink from 'components/EssentialLink.vue'
 
-const linksList = [
-  {
-    title: 'Check Our Store!',
-    icon: 'shopping_cart',
-    link: 'https://take.app/moonbyhosh',
-  },
-  {
-    title: 'Stalk Our Page 🙈',
-    icon: 'public',
-    link: 'https://www.instagram.com/moonbyhosh/',
-  }
-]
 
 </script>
