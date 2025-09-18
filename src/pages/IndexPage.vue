@@ -14,7 +14,7 @@
 
       <!-- Step 3 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-borders">
-        <div> Note down your payment ID - Merchant Ref No. and <strong>last 6 digits</strong> of your eWallet Ref No. </div>
+        <div> Note down your payment ID - Merchant Ref No. and the last 7 digits of your eWallet Ref No. </div>
         <q-card>
           <q-img src="/icons/merchant-ref.jpeg"></q-img> 
         </q-card>
@@ -31,7 +31,7 @@
 
       <!-- Step 4 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-borders">
-        <div> Submit your payment ID below here and get the passcode. 🙏 <strong>Please</strong> 🙏 <strong>lock the box after use</strong> -- Your honesty keeps us going.</div>
+        <div> Submit your payment ID below here and get the passcode. 🙏 <strong>Pleaaase</strong> 🙏 <strong>lock the box after use</strong> -- Your honesty keeps us going 💝.</div>
       </q-card>
 
       <div class="flex flex-center q-mb-sm">
@@ -59,39 +59,40 @@
         <img src="/icons/tng_logo.svg" style="width:25px; height: 25px;"/>
       </q-btn>
     </div>
+    <div class="q-pa-md flex justify-center">
+      <div class="q-pa-sm" style="max-width: 400px;">
+        <label class="text-subtitle2 q-mb-xs text-white">Get the passcode here ▼</label>
+      <q-input 
+        dense
+        filled
+        v-model="userInput"
+        placeholder="Enter paymentId.."
+        mask="NNNNNNNN-#######"
+        class="row secondary-bg q-pa-md flex justify-center"
+        :error="!!inputError"
+        :error-message="inputError"
+        @keyup.enter="submit">
+        <template v-slot:append>
+          <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id" :loading="loading">
+            <template v-slot:loading><q-spinner-dots color="primary" /></template>
+            <q-icon name="arrow_right"/>
+          </q-btn>
+        </template>
+      </q-input>
 
-    <div class="q-pa-sm" style="max-width: 400px;">
-      <label class="text-subtitle2 q-mb-xs text-white">Payment ID</label>
-    <q-input 
+
+      <q-banner v-if="apiResponse"
+      class="q-mt-md"
       dense
-      filled
-      v-model="userInput"
-      placeholder="Enter your payment Id here"
-      mask="NNNNNNNN-#######"
-      class="col secondary-bg q-pa-md "
-      :error="!!inputError"
-      :error-message="inputError"
-      @keyup.enter="submit">
-      <template v-slot:append>
-        <q-btn color="primary" round dense flat @click="submit()" aria-label="Submit payment id" :loading="loading">
-          <template v-slot:loading><q-spinner-dots color="primary" /></template>
-          <q-icon name="arrow_right"/>
-        </q-btn>
-      </template>
-    </q-input>
-
-
-    <q-banner v-if="apiResponse"
-    class="q-mt-md"
-    dense
-    color="primary"
-    text-color="white"
-    icon="info"
-    rounded
-  >
-    {{ apiResponse }}
-  </q-banner>
-  </div>
+      color="primary"
+      text-color="white"
+      icon="info"
+      rounded
+    >
+      {{ apiResponse }}
+    </q-banner>
+    </div>
+    </div>
 
   <div class="q-mt-lg q-pa-lg q-mb-lg"></div>
 
@@ -107,7 +108,7 @@ import { GetPin } from 'src/boot/backend-api'
 const boxLocation = ref('')
 const userInput = ref('')
 const apiResponse = ref('')
-const loading = ref('false')
+const loading = ref(false)
 const inputError = ref('')
 
 const route = useRoute()
