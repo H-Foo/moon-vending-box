@@ -68,7 +68,7 @@
         v-model="userInput"
         placeholder="Enter paymentId.."
         mask="NNNNNNNN-#######"
-        class="row secondary-bg q-pa-md flex justify-center"
+        class="row secondary-bg q-pa-lg flex justify-center"
         :error="!!inputError"
         :error-message="inputError"
         @keyup.enter="submit">
@@ -130,6 +130,13 @@ async function submit(){
   if (userInput.value == '6OD9lfrx-1541731')
   {
     inputError.value = 'This Payment ID already exist.' 
+    return
+  }
+  
+  if (boxLocation.value.startsWith('FOM'))
+  {
+    console.log('enetered')
+    inputError.value = 'This box isn\'t locked. Tysm for your support! <3'
     return
   }
 
