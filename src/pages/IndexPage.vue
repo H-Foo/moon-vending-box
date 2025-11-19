@@ -132,7 +132,7 @@ async function submit(){
   loading.value = true
   apiResponse.value = ''
   const paymentId = `${boxLocation.value} ${userInput.value}`;
-  console.log(`submitted ${paymentId}.`);
+  inputError.value = ''
 
   if (userInput.value == '6OD9lfrx-1541731')
   {
