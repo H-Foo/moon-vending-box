@@ -5,7 +5,10 @@
       
       <!-- Step 1 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-xl">
-        <div> Tap the payment button to open <img src="/icons/tng_logo.svg" style="width:15px; height: 15px;"/> app and pay.</div>
+        <div>
+
+          1. Tap the payment button to open <img src="/icons/tng_logo.svg" style="width:15px; height: 15px;"/> app and pay.
+        </div>
       </q-card>
 
       <div class="flex flex-center q-mb-sm">
@@ -14,7 +17,10 @@
 
       <!-- Step 3 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-borders">
-        <div> Note down your payment ID - Merchant Ref No. and the last 7 digits of your eWallet Ref No. </div>
+        <div> 2. Note down your payment ID: </div> 
+        <div> <b>Merchant Ref No</b> + <b> last 7 digits of your eWallet Ref No</b> </div>
+        <q-space></q-space>
+        <span>Example:</span>
         <q-card>
           <q-img src="/icons/merchant-ref.jpeg"></q-img> 
         </q-card>
@@ -31,7 +37,7 @@
 
       <!-- Step 4 -->
       <q-card class="q-pa-md q-mb-sm bg-grey-2 text-dark rounded-borders">
-        <div> Submit your payment ID below here and get the passcode. 🙏 <strong>Pleaaase</strong> 🙏 <strong>lock the box after use</strong> -- Your honesty keeps us going 💝.</div>
+        <div> 3. Submit your payment ID below here and get the passcode. 🙏 <strong>Pleaaase</strong> 🙏 <strong>lock the box after use</strong> -- Your honesty keeps us going 💝.</div>
       </q-card>
 
       <div class="flex flex-center q-mb-sm">
@@ -66,7 +72,8 @@
         dense
         filled
         v-model="userInput"
-        placeholder="Enter paymentId.."
+        label="Enter PaymentId..."
+        placeholder="eg. 6OD9lfrx-1541731"
         mask="NNNNNNNN-#######"
         class="row secondary-bg q-pa-lg flex justify-center"
         :error="!!inputError"
@@ -129,14 +136,36 @@ async function submit(){
 
   if (userInput.value == '6OD9lfrx-1541731')
   {
-    inputError.value = 'This Payment ID already exist.' 
+    inputError.value = 'Hey you\'re not being honest :[' 
+    loading.value = false;
     return
   }
   
   if (boxLocation.value.startsWith('FOM'))
   {
-    console.log('enetered')
     inputError.value = 'This box isn\'t locked. Tysm for your support! <3'
+    loading.value = false;
+    return
+  }
+  const [text, num] = userInput.value.split('-');
+  if (userInput.value.length < 16 )
+  {
+    if (/^[0-9]+$/.test(text)){
+      inputError.value = 'Please input your merchant Ref no. first'
+      loading.value = false;
+      return
+    } else if (num == ''){
+      inputError.value = 'Please include last 7 digit of eWallet Ref No.';
+      loading.value = false;
+      return
+    } else {
+      inputError.value = 'Invalid paymentId! Did you miss something?'
+      loading.value = false;
+      return
+    }
+  } else if (/^[0-9]+$/.test(text)){
+      inputError.value = 'Please input your merchant Ref no. first'
+      loading.value = false;
     return
   }
 
